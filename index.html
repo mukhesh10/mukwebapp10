@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
-<body>
-
-<h1>Mukhesh Webapp version 1.0</h1>
-
-<p>On testing stage</p>
-
-</body>
+    <html>
+      <head><title>Adaptive Streaming in HTML5</title></head>
+      <body>
+	  <style>
+		video {
+		width: 80%;
+		height: 80%;
+		}
+    </style>
+	<!-- DASH-AVC/265 reference implementation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/1.4/dash.all.js"></script>
+	<script>
+    // setup the video element and attach it to the Dash player
+    function setupVideo() {
+      var url = "http://mukmediaserv.streaming.mediaservices.windows.net/f0bee4aa-cd54-44d6-8c8d-9f874078c88e/NetEnrich Cloud Assessment Servi.ism/manifest(format=mpd-time-csf)";
+      var context = new Dash.di.DashContext();
+      var player = new MediaPlayer(context);
+                      player.startup();
+                      player.attachView(document.querySelector("#videoplayer"));
+                      player.attachSource(url);
+    }
+    </script>
+        <h1>Adaptive Streaming with HTML5</h1>
+        <video id="videoplayer" controls></video>
+		<body onload="setupVideo()">
+      </body>
 </html>
